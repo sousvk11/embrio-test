@@ -1,5 +1,14 @@
 # Use an official PHP image with Apache as the base image.
-FROM php:8.2-apache
+FROM php:8.2.12-fpm
+ARG WORKDIR=/var/www/html
+ENV DOCUMENT_ROOT=${WORKDIR}
+ENV LARAVEL_PROCS_NUMBER=1
+ENV NODE_MAJOR=20
+ENV NVM_DIR /usr/local/nvm
+ENV NODE_VERSION 20.5.0
+ARG HOST_UID=1000
+ENV USER=www-data
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
 # Set environment variables.
 ENV ACCEPT_EULA=Y
@@ -14,27 +23,6 @@ RUN apt-get update && apt-get install -y \
     git \ 
     && rm -rf /var/lib/apt/lists/*
 
-# Enable Apache modules required for Laravel.
-RUN a2enmod rewrite
-
-# Set the Apache document root
-ENV APACHE_DOCUMENT_ROOT /var/www/html/public
-
-# Update the default Apache site configuration
-COPY ./laravel/apache-config.conf /etc/apache2/sites-available/000-default.conf
-
-# Install PHP extensions.
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql
-
-# Install Composer globally.
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-#Install nodejs npm
-
-# Install Node.js using NVM
-ENV NVM_DIR /usr/local/nvm
-ENV NODE_VERSION 20.5.0
 RUN mkdir -p $NVM_DIR
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash \
     && . $NVM_DIR/nvm.sh \
@@ -42,33 +30,21 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | b
     && nvm use $NODE_VERSION \
     && ln -s "$(npm config get prefix)/bin/node" "/usr/local/bin/node" \
     && ln -s "$(npm config get prefix)/bin/npm" "/usr/local/bin/npm"
-
-
-# Create a directory for ssl:
-#RUN mkdir -p /etc/nginx/certs
-
-#working Directory 
-WORKDIR /var/www/html
-
-# Copy the Laravel application files into the container.
-COPY ./web .
-# Set permissions for Laravel.
-##RUN chown -R www-data:www-data .
-##RUN chmod -R 775 .
-
-#UPDATE NPM
 RUN npm update -g npm
 
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql
 
-##RUN npm install
-##RUN npm run build
-# Install Laravel dependencies using Composer.
+# Install Composer globally.
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+ADD ./entrypoint.sh /
+RUN chmod +x /entrypoint.sh
 
-##RUN composer install && composer update
+WORKDIR $WORKDIR
 
-RUN apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN rm -Rf /var/www/html/*
+ADD ./.env .
 
-# Start Apache web server.
-CMD ["apache2-foreground"]
+ENTRYPOINT ["/entrypoint.sh"]
+
 
