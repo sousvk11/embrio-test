@@ -6,8 +6,9 @@ npm run build
  
 composer install && composer update 
 
-chown -R www-data:www-data /var/www/html 
+chown -R :www-data /var/www/html 
 
-chmod -R 775 /var/www/html
+chmod -R 777 /var/www/html
 
-php artisan serve
+
+php artisan serve  --port 8000 --host 0.0.0.0

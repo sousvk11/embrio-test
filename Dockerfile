@@ -7,7 +7,7 @@ ENV NODE_MAJOR=20
 ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 20.5.0
 ARG HOST_UID=1000
-ENV USER=www-data
+ENV USER=abc
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
 # Set environment variables.
@@ -37,7 +37,7 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 
 # Install Composer globally.
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-ADD ./entrypoint.sh /
+COPY ./entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
 WORKDIR $WORKDIR
@@ -45,6 +45,6 @@ WORKDIR $WORKDIR
 RUN rm -Rf /var/www/html/*
 ADD ./.env .
 
-ENTRYPOINT ["/entrypoint.sh"]
-
+#ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/bin/bash", "-c", "/entrypoint.sh"]
 
