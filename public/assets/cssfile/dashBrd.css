@@ -1,0 +1,507 @@
+/* dashborad */
+
+.dashbrdSec {
+    width: 100%;
+}
+.dashbrdInnerSec {
+    width: 100%;
+    container-type: inline-size;
+    container-name: dashInnerLayout;
+}
+.dashbrdSec .dashSummeryCard {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.bg-amber-500 {
+    background-color: rgb(245 158 11);
+}
+
+.bg-sky-500 {
+    background-color: rgb(14 165 233);
+}
+.dashbrdSec .dashSummeryCard .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 20px;
+    width: 100%;
+    /* max-width: 350px; */
+    min-height: 126px;
+    border: 1px dashed var(--clr_border);
+    border-radius: 6px;
+    box-shadow: var(--shadow2);
+    margin-block-end: 0;
+    cursor: pointer;
+}
+.dashbrdSec .dashSummeryCard .card .cardInner {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.dashbrdSec .dashSummeryCard .card:hover {
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+.dashbrdSec .dashSummeryCard .cardTextBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    gap: 2px;
+}
+.dashbrdSec .dashSummeryCard .cardTextBox .cardText {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text_clr_primary);
+    text-align: center;
+}
+.dashbrdSec .dashSummeryCard .cardTextBox .cardTextDate {
+    font-size: 12px;
+    color: var(--text_clr_white);
+    background: var(--bg_clr_sky3);
+    padding-inline: 3px;
+    padding-block: 2px;
+    font-weight: 600;
+}
+.dashbrdSec .dashSummeryCard .cardTextBox .cardTextPrs {
+    font-size: 12px;
+    color: var(--text_clr_white);
+    background: var(--bg_clr_green1);
+    padding-inline: 3px;
+    padding-block: 2px;
+    font-weight: 600;
+}
+.dashbrdSec .dashSummeryCard .userEarn {
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--text_clr_blue);
+}
+.dashbrdSec .dashSummeryCard .totalEarn {
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--text_clr_lightgreen);
+}
+.dashbrdSec .dashSummeryCard .pendEarn {
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--text_clr_orange);
+}
+.dashbrdSec .dashSummeryCard .recentEarn {
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--text_clr_primary1);
+}
+.dashContent {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+}
+.dashContent .card {
+    box-shadow: var(--shadow);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.leftContent {
+    width: calc(100% - 300px);
+}
+
+.graphSec {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: 30px; */
+}
+/* .graphSec {
+    container-type: inline-size;
+    container-name: layoutSize;
+} */
+.graphTitle {
+    background: var(--bg_clr_grey) !important;
+    padding: 0 13px;
+    color: var(--text_clr_primary) !important;
+}
+.nav-line-tabs .nav-item .nav-link:hover {
+    color: var(--text_clr_primary4);
+    border-bottom: 1px solid var(--text_clr_primary4) !important;
+}
+.nav-line-tabs .nav-item .nav-link.active {
+    color: var(--text_clr_primary4) !important;
+    border-bottom: 1px solid var(--text_clr_primary4) !important;
+}
+.lineGraph {
+    width: 100%;
+    background: var(--bg_clr_white);
+    height: 300px !important;
+}
+.barGraph {
+    width: 100%;
+    background: var(--bg_clr_white);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px !important;
+}
+.orderSec {
+    overflow: auto;
+    white-space: nowrap;
+}
+.orderRow {
+    border: 1px solid var(--clr_border);
+}
+.orderName {
+    color: var(--text_clr_orange1);
+}
+.orderPr {
+    color: var(--text_clr_blue);
+}
+.orderPr a:hover {
+    color: var(--text_clr_blue);
+}
+.orderStatus {
+    color: var(--text_clr_red);
+    background: var(--bg_clr_red1);
+}
+.orderStatus:hover {
+    color: var(--text_clr_red);
+}
+.leftContent .inventoryAcc .accordion-body.bg-blue-950.p-0 {
+    white-space: nowrap;
+    overflow: auto;
+}
+.leftContent .inventoryAcc button.accordion-button {
+    background: var(--bg_clr_grey) !important;
+    padding: 13px;
+    color: var(--text_clr_primary);
+}
+.leftContent .inventoryAcc button.accordion-button.accTitle {
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+.leftContent .inventoryAcc .accordion-button:not(.collapsed)::after {
+    background-image: url(../images/icon/down-arrow.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: 10px;
+}
+.leftContent .inventoryAcc .accordion-button::after {
+    background-image: url(../images/icon/down-arrow.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: 10px;
+}
+.leftContent .inventoryAcc .accordion-body {
+    color: var(--text_clr_black);
+    font-weight: 500;
+    background: var(--bg_clr_primary3);
+    padding: 12px;
+}
+.leftContent .inventoryAcc #headingOne button.accordion-button {
+    color: var(--text_clr_primary) !important;
+}
+.inventoryAcc.accordion .show {
+    visibility: visible;
+}
+.acTbodyOne {
+    background: var(--bg_clr_sky3);
+}
+.acTbodyTwo {
+    background: var(--bg_clr_green1);
+}
+.acTbodyOne td a:hover,
+.acTbodyTwo td a:hover {
+    transition: var(--transition);
+    color: var(--text_clr_white);
+}
+.librarySec {
+    width: 100%;
+}
+.libraryLeft .libraryLogoImg,
+.libraryRight .libraryLogoImg {
+    width: 40px;
+    display: inline-block;
+}
+.libraryLeft .libraryLogoImg img,
+.libraryRight .libraryLogoImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.libraryRowOne,
+.libraryRowTwo {
+    border: 1px solid var(--clr_border);
+}
+.libraryRowOne td a {
+    color: var(--text_clr_blue);
+}
+.libraryRowOne td a:hover {
+    color: inherit;
+}
+.libraryPr {
+    color: var(--text_clr_green1);
+    background: var(--bg_clr_sky4);
+}
+.libraryPr:hover {
+    color: var(--text_clr_green1);
+}
+.libraryCmp {
+    color: var(--text_clr_lightgreen1);
+    background: var(--bg_clr_green);
+}
+.libraryCmp:hover {
+    color: var(--text_clr_lightgreen1);
+}
+.rightContent {
+    width: 100%;
+    max-width: 270px;
+}
+.rightContentFeed .feedTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text_clr_primary);
+}
+.newsFeed {
+    width: 100%;
+    background: var(--bg_clr_primary1);
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+}
+.newsFeedImg {
+    width: 16px;
+    border-radius: 6px !important;
+    margin: 10px;
+    filter: invert(1);
+}
+.newsFeedImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.pieGraph {
+    width: 100%;
+    background: var(--bg_clr_white);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 360px !important;
+}
+.graphSec .graphInnerSec {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.dashInnerContent {
+    container-type: inline-size;
+    container-name: dashInnerLayout;
+}
+.leftContent {
+    container-type: inline-size;
+    container-name: layoutSize;
+}
+
+.bg-amber-500 {
+    background-color: rgb(245 158 11);
+}
+.bg-sky-500 {
+    background-color: rgb(14 165 233);
+}
+/* responsive start */
+
+@container layoutSize (max-width: 900px) {
+    .graphSec .graphInnerSec {
+        flex-direction: column;
+        gap: 40px;
+        padding: 0;
+    }
+}
+@container layoutSize (max-width: 600px) {
+    .graphInnerSec .lineGraph,
+    .graphInnerSec .barGraph {
+        max-width: 400px;
+        height: 100% !important;
+    }
+}
+@container layoutSize (max-width: 480px) {
+    .graphInnerSec .lineGraph,
+    .graphInnerSec .barGraph {
+        max-width: 300px;
+        height: 100% !important;
+    }
+    .graphTitle {
+        flex-direction: column;
+        gap: 8px;
+        padding-block-start: 12px;
+    }
+
+    .graphTitle ul li a {
+        padding-block: 0 12px !important;
+    }
+}
+
+@container layoutSize (max-width: 640px) {
+    /* .graphInnerSec .lineGraph,
+    .graphInnerSec .barGraph {
+        max-width: 300px;
+        height: 100% !important;
+    } */
+    .librarySec {
+        flex-direction: column !important;
+        gap: 0 !important;
+    }
+}
+
+/* @container dashInnerLayout (max-width:767px) {
+    .dashContent {
+        flex-direction: column;
+        gap: 0 !important;
+    }
+    .leftContent {
+        width: 100%;
+    }
+    .rightContent {
+        width: 100%;
+        max-width: inherit;
+    }
+} */
+@media only screen and (max-width: 1299px) {
+    .dashbrdSec .dashSummeryCard .cardTextBox .cardText {
+        font-size: 13px;
+    }
+    .dashbrdSec .dashSummeryCard .totalEarn {
+        font-size: 20px;
+    }
+    .dashbrdSec .dashSummeryCard .cardTextBox .cardTextDate {
+        font-size: 11px;
+    }
+    .dashbrdSec .dashSummeryCard .userEarn {
+        font-size: 20px;
+    }
+    .dashbrdSec .dashSummeryCard .pendEarn {
+        font-size: 20px;
+    }
+    .dashbrdSec .dashSummeryCard .recentEarn {
+        font-size: 20px;
+    }
+    .graphTitle h3 {
+        font-size: 14px !important;
+    }
+    .graphTitle .nav-link {
+        font-size: 12px !important;
+    }
+    .orderTable tr th {
+        font-size: 10px;
+    }
+    .orderTable tr td {
+        font-size: 10px;
+    }
+
+    .leftContent .inventoryAcc button.accordion-button {
+        font-size: 14px !important;
+        padding-inline: 20px;
+    }
+    .inventoryAcc {
+        font-size: 10px;
+    }
+    .inventoryAcc .tableHead th {
+        font-size: 10px;
+    }
+    .libraryRowOne th,
+    .libraryRowTwo th {
+        font-size: 10px;
+    }
+    .libraryRowOne td,
+    .libraryRowTwo td {
+        font-size: 10px;
+    }
+    .librayTitle {
+        font-size: 14px !important;
+        padding-block-end: 22px !important;
+    }
+    .libraryLeft .libraryLogoImg,
+    .libraryRight .libraryLogoImg {
+        width: 25px;
+    }
+
+    .rightContent .rightContentFeed .feedTitle {
+        font-size: 14px;
+    }
+    .rightContentFeed ul li {
+        font-size: 10px;
+    }
+}
+@media only screen and (max-width: 1400px) {
+    /* .dashSummeryCard {
+        flex-wrap: wrap;
+    }
+    .dashSummeryCard .card {
+        width: 100%;
+        max-width: 400px;
+    } */
+}
+
+@media only screen and (max-width: 1199px) {
+    .container {
+        max-width: 991px;
+    }
+}
+@media only screen and (max-width: 991px) {
+    /* STORE START */
+    .container {
+        max-width: 767px;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .container {
+        max-width: 100%;
+    }
+    .dashbrdSec .dashSummeryCard {
+        flex-wrap: wrap;
+        gap: 0;
+    }
+    .dashbrdSec .dashSummeryCard .card {
+        width: 50%;
+    }
+    .dashContent {
+        flex-direction: column;
+        gap: 0 !important;
+    }
+    .leftContent {
+        width: 100%;
+        padding-block-end: 0 !important;
+    }
+    .rightContent {
+        width: 100%;
+        max-width: inherit;
+        padding-block-start: 0 !important;
+    }
+    canvas#myPieChart {
+        max-width: 320px !important;
+        width: 100% !important;
+        height: fit-content !important;
+        margin-inline: auto;
+    }
+}
+@media only screen and (max-width: 360px) {
+    .dashbrdSec .dashSummeryCard {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .dashbrdSec .dashSummeryCard .card {
+        width: 100%;
+    }
+}

@@ -1,0 +1,19 @@
+.heading1{
+    font: normal 600 50px/60px var(--font_primary);
+}
+.heading4{font: normal 700 22px/28px var(--font_primary);}
+.body1{font: normal 500 17px/23px var(--font_primary);}
+.body2{font: normal 500 14px/20px var(--font_primary);}
+
+@media only screen and (max-width: 1299px) {
+    .heading1{
+        font-size: 35px;
+        line-height: 42px;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .heading4{
+        font-size: 20px;
+        line-height: 26px;
+    }
+}

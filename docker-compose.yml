@@ -4,68 +4,65 @@ services:
   # Laravel Application
   app:
     build:
-      context: .
+      context: ./.Docker
       dockerfile: Dockerfile
-    container_name: laravel-app
+    container_name: embroidr-app
     volumes:
-      - ./web:/var/www/html
-      #- ./laravel/apache-config.conf /etc/apache2/sites-available/000-default.conf
-      - ./entrypoint.sh:/entrypoint.sh
+      - .:/var/www/html
+      - ./.Docker/entrypoint.sh:/entrypoint.sh
     ports:
       - "8000:80"
-    environment:
-      - APACHE_DOCUMENT_ROOT=/var/www/html/public
     depends_on:
       - mysql
     networks:
-      - laravel-net
+      - embroidr-net
     entrypoint: /entrypoint.sh    
 
   # MySQL Database
   mysql:
     image: mysql:8
-    container_name: laravel-mysql
+    container_name: embroidr-mysql
     ports:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: souvik98
-      MYSQL_DATABASE: embroid
-      MYSQL_USER: svk
-      MYSQL_PASSWORD: souvik98
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - ./mysql_data:/var/lib/mysql
+      - ./.Docker/mysql_data:/var/lib/mysql
     networks:
-      - laravel-net
+      - embroidr-net
 
   #PhpMyadmin 
   phpmyadmin:
     image: phpmyadmin
-    container_name: laravel-phpmyadmin
+    container_name: embroidr-phpmyadmin
     links:
       - mysql
     environment:
       PMA_HOST: mysql
       PMA_PORT: 3306
-      UPLOAD_LIMIT: 1024M
+      UPLOAD_LIMIT: 2024M
       MEMORY_LIMIT: 512M
     ports:
       - "8081:80"
     networks:
-      - laravel-net  
+      - embroidr-net  
   #Nginx Reverse Proxy      
   nginx:
     image: nginx
-    container_name: laravel-nginx
+    container_name: embroidr-nginx
     ports:  
       - "80:80"
       - "443:443"
     volumes:
-      - ./laravel/nginx/conf.d:/etc/nginx/conf.d
-      - ./laravel/nginx/ssl:/etc/ssl/private
+      - ./.Docker/laravel/nginx/conf.d:/etc/nginx/conf.d
+      - ./.Docker/laravel/nginx/ssl:/etc/ssl/private
     depends_on:
       - app
       - phpmyadmin
     networks:
-      - laravel-net
+      - embroidr-net
 networks:
-  laravel-net:
+  embroidr-net:
