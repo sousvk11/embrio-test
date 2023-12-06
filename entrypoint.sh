@@ -16,4 +16,4 @@ service apache2 status
 
 service apache2 start
 
-tail -f /etc/apache2/sites-available/000-default.conf
+tail -f /dev/null
