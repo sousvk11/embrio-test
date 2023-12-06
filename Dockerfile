@@ -1,5 +1,6 @@
 # Use an official PHP image with Apache as the base image.
-FROM php:8.2.12-fpm
+#FROM php:8.2.12-fpm
+FROM php:8.2-apache
 ARG WORKDIR=/var/www/html
 ENV DOCUMENT_ROOT=${WORKDIR}
 ENV LARAVEL_PROCS_NUMBER=1
@@ -21,7 +22,11 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     git \ 
+    #apache2\
     && rm -rf /var/lib/apt/lists/*
+
+RUN a2enmod rewrite
+COPY ./laravel/apache-config.conf /etc/apache2/sites-available/000-default.conf    
 
 RUN mkdir -p $NVM_DIR
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash \
@@ -44,7 +49,6 @@ WORKDIR $WORKDIR
 
 RUN rm -Rf /var/www/html/*
 ADD ./.env .
-
 #ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/bin/bash", "-c", "/entrypoint.sh"]
 

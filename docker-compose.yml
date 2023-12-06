@@ -12,7 +12,7 @@ services:
       #- ./laravel/apache-config.conf /etc/apache2/sites-available/000-default.conf
       - ./entrypoint.sh:/entrypoint.sh
     ports:
-      - "8000:8000"
+      - "8000:80"
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html/public
     depends_on:

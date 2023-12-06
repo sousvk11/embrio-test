@@ -10,5 +10,10 @@ chown -R :www-data /var/www/html
 
 chmod -R 777 /var/www/html
 
+service apache2 start
 
-php artisan serve  --port 8000 --host 0.0.0.0
+service apache2 status
+
+service apache2 start
+
+tail -f /etc/apache2/sites-available/000-default.conf
