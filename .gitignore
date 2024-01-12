@@ -21,4 +21,7 @@ yarn-error.log
 /.vscode
 package-lock.json
 composer.lock
-
+node_modules
+vendor
+/.Docker/mysql_data
+.Docker/mysql_data
